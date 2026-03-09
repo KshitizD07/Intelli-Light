@@ -154,7 +154,7 @@ class ScenarioConfig:
 class EpisodeConfig:
     """Simulation episode configuration."""
     
-    LENGTH = 900               # Episode duration in simulation seconds (30 minutes)
+    LENGTH = 1800              # Episode duration in simulation seconds (30 minutes)
     SIM_STEP = 1               # Simulation time step (1 second)
     MAX_STEPS = LENGTH // SIM_STEP  # Maximum steps per episode
 
@@ -213,7 +213,8 @@ class ActionConfig:
     # direction: 0 = EW, 1 = NS
     # duration: index into SignalTiming.GREEN_OPTIONS
     N_DIRECTIONS = 2
-    N_DURATIONS = len(SignalTiming.GREEN_OPTIONS)
+    # N_DURATIONS = len(SignalTiming.GREEN_OPTIONS)
+    N_DURATIONS=16
 
 
 # =============================================================================

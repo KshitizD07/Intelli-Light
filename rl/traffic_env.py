@@ -94,7 +94,7 @@ class TrafficEnv(gym.Env):
         
         self.action_space = spaces.MultiDiscrete([
             ActionConfig.N_DIRECTIONS,
-            ActionConfig.N_DURATIONS
+            len(SignalTiming.GREEN_OPTIONS)
         ])
         
         # Initialize components
@@ -238,7 +238,8 @@ class TrafficEnv(gym.Env):
         # Collect metrics before calculating reward
         queues, wait_times = self._get_traffic_metrics()
         arrived_count = self.sumo.get_arrived_vehicles()
-        
+        if self.current_step%5==0:
+            print(f"[Debug] Step {self.current_step}: arrived_count={arrived_count},"f"prev={self.reward_calc.previous_arrived_count}")
         # Calculate reward
         reward = self.reward_calc.calculate_reward(
             queues=queues,
@@ -264,6 +265,7 @@ class TrafficEnv(gym.Env):
         # Prepare info dict
         info = {
             'step': self.current_step,
+            'simulation_step': self.simulation_step,
             'reward_components': self.reward_calc.get_component_breakdown(),
             'queues': queues.tolist(),
             'wait_times': wait_times.tolist(),

@@ -68,6 +68,7 @@ class SUMOSimulation:
         self._route_file = None
         self._sumo_process = None
         self.cummulative_arrived = 0
+        self._last_reported_arrivals = 0
 
         self.sumo_cfg = sumo_cfg or os.path.join(
             Paths.SUMO_CONFIG_DIR,
@@ -221,6 +222,13 @@ class SUMOSimulation:
             self._current_step += 1
             arrived_this_step=len(traci.simulation.getArrivedIDList())
             self.cummulative_arrived+=arrived_this_step
+
+            if self.cummulative_arrived < self._last_reported_arrivals:
+                print(f"[ERROR] Cumulative counter went backwards! " f"{self._last_reported_arrivals} -> {self.cummulative_arrived}")
+                self.cummulative_arrived = self._last_reported_arrivals
+
+            if arrived_this_step > 0:
+                print(f"[SUMO] Step {self._current_step}: +{arrived_this_step} arrived, total={self.cummulative_arrived}")
             
         except traci.TraCIException as e:
             logger.error(f"SUMO step failed: {e}")
@@ -260,18 +268,23 @@ class SUMOSimulation:
     
     def get_arrived_vehicles(self) -> int:
         """
-        Get number of vehicles that arrived (completed journey) in last step.
+        Get cumulative number of vehicles that arrived since episode start.
+        
+        This tracks ALL vehicles that completed their journey during the episode,
+        not just those that arrived in the last simulation step.
         
         Returns:
-            int: Number of arrived vehicles
+            int: Total cumulative arrived vehicles
         """
         if not self._is_running:
             return 0
         
-        try:
-            return len(traci.simulation.getArrivedIDList())
-        except traci.TraCIException as e:
-            logger.warning(f"Failed to get arrived vehicles: {e}")
+        # Debug: Track for safety
+        self._last_reported_arrivals = self.cummulative_arrived
+        
+        # Debug print
+        print(f"[SUMO.get_arrived] Returning cumulative: {self.cummulative_arrived}")
+        
         return self.cummulative_arrived
     
     def get_vehicle_count(self) -> int:
@@ -445,7 +458,8 @@ class SUMOSimulation:
         """
         if self._is_running:
             try:
-                logger.debug("Closing SUMO simulation")
+                logger.debug(f"Closing SUMO - cumulative_arrived was: {self.cummulative_arrived}")
+                # print(f"[WARNING] SUMO.close() called! cumulative={self.cummulative_arrived}")
                 traci.close()
                 self._is_running = False
                 self._current_step = 0
