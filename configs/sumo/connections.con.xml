@@ -1,0 +1,14 @@
+<connections>
+    <connection from="N1_to_J1" to="J1_to_S1"/>
+    <connection from="N1_to_J1" to="J1_to_E1"/>
+    <connection from="N1_to_J1" to="J1_to_W1"/>
+    <connection from="S1_to_J1" to="J1_to_N1"/>
+    <connection from="S1_to_J1" to="J1_to_E1"/>
+    <connection from="S1_to_J1" to="J1_to_W1"/>
+    <connection from="E1_to_J1" to="J1_to_W1"/>
+    <connection from="E1_to_J1" to="J1_to_N1"/>
+    <connection from="E1_to_J1" to="J1_to_S1"/>
+    <connection from="W1_to_J1" to="J1_to_E1"/>
+    <connection from="W1_to_J1" to="J1_to_N1"/>
+    <connection from="W1_to_J1" to="J1_to_S1"/>
+</connections>

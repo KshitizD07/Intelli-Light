@@ -1,0 +1,13 @@
+<configuration>
+    <input>
+        <net-file value="intersection.net.xml"/>
+        <!-- Route file will be specified via command line -->
+        <!-- Additional file removed to allow dynamic traffic light control -->
+    </input>
+    <time>
+        <begin value="0"/>
+    </time>
+    <report>
+        <no-step-log value="true"/>
+    </report>
+</configuration>

@@ -1,0 +1,13 @@
+<additional>
+    <tlLogic id="J1" type="static" programID="0" offset="0">
+        <phase duration="31" state="GGrrGGrr"/> <phase duration="4"  state="yyrryyrr"/> <phase duration="31" state="rrGGrrGG"/> <phase duration="4"  state="rryyrryy"/> </tlLogic>
+
+    <inductionLoop id="det_W_0" lane="W1_to_J1_0" pos="-10" freq="1" file="detector_output.xml"/>
+    <inductionLoop id="det_W_1" lane="W1_to_J1_1" pos="-10" freq="1" file="detector_output.xml"/>
+    <inductionLoop id="det_E_0" lane="E1_to_J1_0" pos="-10" freq="1" file="detector_output.xml"/>
+    <inductionLoop id="det_E_1" lane="E1_to_J1_1" pos="-10" freq="1" file="detector_output.xml"/>
+    <inductionLoop id="det_N_0" lane="N1_to_J1_0" pos="-10" freq="1" file="detector_output.xml"/>
+    <inductionLoop id="det_N_1" lane="N1_to_J1_1" pos="-10" freq="1" file="detector_output.xml"/>
+    <inductionLoop id="det_S_0" lane="S1_to_J1_0" pos="-10" freq="1" file="detector_output.xml"/>
+    <inductionLoop id="det_S_1" lane="S1_to_J1_1" pos="-10" freq="1" file="detector_output.xml"/>
+</additional>
