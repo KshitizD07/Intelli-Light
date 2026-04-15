@@ -7,7 +7,7 @@
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)](https://www.python.org/)
 [![SUMO](https://img.shields.io/badge/SUMO-1.18%2B-green)](https://www.eclipse.org/sumo/)
 [![Stable-Baselines3](https://img.shields.io/badge/SB3-PPO-orange)](https://stable-baselines3.readthedocs.io/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 
 > This project was developed with the assistance of an **Agentic AI workflow**.
 
